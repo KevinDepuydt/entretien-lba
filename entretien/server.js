@@ -15,6 +15,10 @@ const express = require("express");
 (async function () {
   const app = express();
 
+  app.get("/", (req, res) => {
+    res.sendFile("index.html", { root: __dirname })
+  })
+
   app.get("/data", async (req, res) => {
     let organismes = getData1();
 
@@ -32,7 +36,7 @@ const express = require("express");
     });
   });
 
-  app.listen(5000, () => console.log(`Server ready and listening on port ${5000}`));
+  app.listen(3000, () => console.log(`Server ready and listening on port ${3000}`));
 })();
 
 /**
