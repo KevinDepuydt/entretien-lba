@@ -15,6 +15,10 @@ const express = require("express");
 (async function () {
   const app = express();
 
+  app.get("/", (req, res) => {
+    res.sendFile("index.html", { root: __dirname })
+  })
+
   app.get("/data", async (req, res) => {
     let organismes = getData1();
 
@@ -32,9 +36,14 @@ const express = require("express");
     });
   });
 
-  app.listen(5000, () => console.log(`Server ready and listening on port ${5000}`));
+  app.listen(3000, () => console.log(`Server ready and listening on port ${3000}`));
 })();
 
+/**
+ * Fetch data from API to get organismes
+ * - Replace nom with raison_sociale
+ * @returns {Promise<*>}
+ */
 async function getData1() {
   let response = await axios.get("https://mocki.io/v1/cbbd831b-199c-4e48-b426-1ce8ddbf1aa5");
   let organismes = response.data;
